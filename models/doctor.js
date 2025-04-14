@@ -1,39 +1,24 @@
 const { DataTypes: dt } = require("sequelize");
 const sequelize = require("../database/connection");
 
-const GrammerCorrectionModel = sequelize.define("grammer_corrections", {
+const GrammerCorrectionModel = sequelize.define("grammer_checking_prompt_table", {
   id: {
     type: dt.INTEGER,
     primaryKey: true,
     autoIncrement: true,
   },
-  original_text: {
-    type: dt.TEXT,
+  text: {
+    type: dt.STRING,
     allowNull: false,
   },
-  corrected_text: {
-    type: dt.TEXT,
+  correctedText: {
+    type: dt.STRING,
     allowNull: false,
   },
   mode: {
-    type: dt.ENUM('basic', 'explanation', 'formal'),
+    type: dt.STRING,
     allowNull: false,
-  },
-  corrections: {
-    type: dt.JSON,
-    allowNull: true,
-  },
-  usage_details: {
-    type: dt.JSON,
-    allowNull: true,
-  },
-  created_at: {
-    type: dt.DATE,
-    defaultValue: dt.NOW,
   }
-}, {
-  timestamps: false,
-  tableName: 'grammer_corrections'
 });
 
 module.exports = GrammerCorrectionModel;
